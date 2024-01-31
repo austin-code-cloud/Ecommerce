@@ -11,7 +11,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Add New Admin</h1>
+                        <h1>Update Admin</h1>
                     </div>
 
                 </div>
@@ -30,26 +30,27 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <input type="text" class="form-control" name="name" value="{{ old('name')}}" placeholder="Enter name">
+                                        <input type="text" class="form-control" value="{{ old ('name', $getRecord->name) }}" name="name" placeholder="Enter name">
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input type="email" class="form-control" name="email" value="{{ old('email')}}" placeholder="Enter email">
+                                        <input type="email" class="form-control" value="{{ old ('email', $getRecord->email) }}" name="email" placeholder="Enter email">
                                         <div style="color: red">{{$errors->first('email')}}</div>
                                     </div>
                                     <div class="form-group">
                                         <label>Password</label>
                                         <input type="password" class="form-control" name="password" placeholder="Password">
+                                        <p style="font-weight: bold; color: red">If you want to change password, please type, else leave empty</p>
                                     </div>
                                     <div class="form-group">
                                         <label>Status</label>
                                         <select class="form-control" name="status">
-                                            <option {{ (old('status') == 0) ? 'selected' : ''}} value="0">Active</option>
-                                            <option {{ (old('status') == 1) ? 'selected' : ''}} value="1">Inactive</option>
+                                            <option {{ ($getRecord->status == 0) ? 'selected' : ''}} value="0">Active</option>
+                                            <option {{ ($getRecord->status == 1) ? 'selected' : ''}} value="1">Inactive</option>
                                         </select>
                                     </div>
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
                             </form>
                         </div>

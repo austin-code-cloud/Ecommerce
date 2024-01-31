@@ -45,6 +45,14 @@ class User extends Authenticatable
 
     static function getAdmin()
     {
-        return  User::select('users.*')->where('is_admin', '=', 1)->orderBy('id', 'desc')->get();
+        return  User::select('users.*')
+            ->where('is_admin', '=', 1)
+            ->where('is_delete', '=', 0)
+            ->orderBy('id', 'desc')
+            ->get();
+    }
+    static function getSingle($id)
+    {
+        return User::find($id);
     }
 }

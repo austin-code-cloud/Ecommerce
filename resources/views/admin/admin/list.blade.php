@@ -52,7 +52,7 @@
                                             <td>{{ ($item->status == 0) ? 'Active' : 'Inactive' }}</td>  
                                             <td>
                                                 <a href="{{ url('admin/admin/edit/'. $item->id) }}" class="btn btn-primary">Edit</a> 
-                                                <a href="{{ url('admin/admin/delete/'. $item->id) }}" class="btn btn-danger">Deletegit </a> 
+                                                <a href="{{ url('admin/admin/delete/'. $item->id) }}" class="btn btn-danger">Delete</a> 
                                             </td>
                                         </tr>
                                         @endforeach
