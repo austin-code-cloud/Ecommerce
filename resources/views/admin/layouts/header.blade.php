@@ -154,6 +154,13 @@
                         <p>Category</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ url('admin/sub_category/list') }}"
+                        class="nav-link @if (Request::segment(2) == 'sub_category') active @endif">
+                        <i class="fas fa-list-alt nav-icon "></i>
+                        <p>Sub Category</p>
+                    </a>
+                </li>
 
 
                 <li class="nav-item">
