@@ -43,4 +43,39 @@ class SubCategoryController extends Controller
 
         return redirect('admin/sub_category/list')->with('success', 'A New Sub Category has been created successfully');
     }
+    public function edit($id)
+    {
+        $data['getCategory'] = CategoryModel::getRecord();
+        $data['getRecord'] = SubCategoryModel::getSingle($id);
+        $data['header_title'] = "Edit Subcategory";
+        return view('admin.subcategory.edit', $data);
+    }
+    public function update($id, Request $request)
+    {
+        request()->validate([
+            'slug' => 'required|unique:sub_category,slug,' . $id
+        ]);
+
+        $sub_category =  SubCategoryModel::getSingle($id);
+        $sub_category->name = trim($request->sub_category_name);
+        $sub_category->category_id = trim($request->category_id);
+        $sub_category->slug = trim($request->slug);
+        $sub_category->status = trim($request->status);
+        $sub_category->is_delete = 0;
+        $sub_category->meta_title = trim($request->meta_title);
+        $sub_category->meta_description = trim($request->meta_description);
+        $sub_category->meta_keywords = trim($request->meta_keywords);
+        $sub_category->created_by = Auth::user()->id;
+
+        $sub_category->save();
+
+        return redirect('admin/sub_category/list')->with('success', ' Sub Category has been updated successfully');
+    }
+    public function delete($id)
+    {
+        $user = SubCategoryModel::getSingle($id);
+        $user->is_delete = 1;
+        $user->save();
+        return redirect()->back()->with('success', 'Sub Category deleted successfully');
+    }
 }

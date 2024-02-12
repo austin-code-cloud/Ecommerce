@@ -14,11 +14,14 @@ class SubCategoryModel extends Model
     static public function getRecord()
     {
         return SubCategoryModel::select('sub_category.*', 'users.name as created_by_name', 'category.name as category_name')
-            ->where('category.is_delete', '=', 0)
+            ->where('sub_category.is_delete', '=', 0)
             ->join('category', 'category.id', '=', 'sub_category.category_id')
             ->join('users', 'users.id', '=', 'category.created_by')
             ->orderBy('sub_category.id', 'desc')
-            ->paginate(20);
+            ->paginate(15);
     }
-
+    static public function getSingle($id)
+    {
+        return SubCategoryModel::find($id);
+    }
 }

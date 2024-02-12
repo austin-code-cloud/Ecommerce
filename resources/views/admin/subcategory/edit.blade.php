@@ -34,19 +34,19 @@
                                         <select class="form-control" name="category_id">
                                             <option value="">Select</option>
                                             @foreach ($getCategory as $item)
-                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                <option {{ $item->id == $getRecord->category_id ? 'selected' : '' }} value="{{$item->id }}">{{ $item->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Sub Category Name <span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="sub_category_name"
-                                            value="{{ old('category_name') }}" placeholder="Category_name">
+                                            value="{{ old('name', $getRecord->name) }}" placeholder="Category_name">
                                     </div>
                                     <div class="form-group">
                                         <label>Slug <span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="slug"
-                                            value="{{ old('slug') }}" placeholder="Slug Ex. URL">
+                                            value="{{ old('slug', $getRecord->slug) }}" placeholder="Slug Ex. URL">
                                         <div style="color: red">{{ $errors->first('slug') }}</div>
                                     </div>
 
@@ -54,9 +54,9 @@
                                     <div class="form-group">
                                         <label>Status</label>
                                         <select class="form-control" name="status">
-                                            <option {{ old('status') == 0 ? 'selected' : '' }} value="0">Active
+                                            <option {{ $getRecord->status == 0 ? 'selected' : '' }} value="0">Active
                                             </option>
-                                            <option {{ old('status') == 1 ? 'selected' : '' }} value="1">Inactive
+                                            <option {{ $getRecord->status == 1 ? 'selected' : '' }} value="1">Inactive
                                             </option>
                                         </select>
                                     </div>
@@ -66,16 +66,16 @@
                                     <div class="form-group">
                                         <label>Meta title <span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="meta_title"
-                                            value="{{ old('meta_title') }}" placeholder="Meta_title">
+                                            value="{{ old('meta_title', $getRecord->meta_title) }}" placeholder="Meta_title">
                                     </div>
                                     <div class="form-group">
                                         <label>Meta Description</label>
-                                        <textarea class="form-control" name="meta_description" placeholder="Meta_description">{{ old('meta_description') }}</textarea>
+                                        <textarea class="form-control" name="meta_description" placeholder="Meta_description">{{ old('meta_description', $getRecord->meta_description) }}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Meta Keyboards</label>
                                         <input type="text" class="form-control" name="meta_keywords"
-                                            value="{{ old('meta_keyword') }}" placeholder="Meta_keywords">
+                                            value="{{ old('meta_keyword', $getRecord->meta_keywords) }}" placeholder="Meta_keywords">
                                     </div>
 
                                     <div class="card-footer">
