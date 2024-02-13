@@ -15,8 +15,16 @@ class ProductController extends Controller
     }
     public function add()
     {
-   
+
         $data['header_title'] = "Add Product";
         return view('admin.product.add', $data);
+    }
+    public function insert(Request $request)
+    {
+        
+
+
+
+        return redirect('admin/category/list')->with('success', 'A New Category has been created successfully');
     }
 }
